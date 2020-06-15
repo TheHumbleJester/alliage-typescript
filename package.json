@@ -1,0 +1,70 @@
+{
+  "name": "alliage-typescript",
+  "version": "0.0.1-pre.1",
+  "description": "TypeScript module for alliage",
+  "main": "index.js",
+  "repository": "git@github.com:TheHumbleJester/alliage-typescript.git",
+  "author": "The Humble Jester <the.humble.jester@gmail.com>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "sh scripts/build.sh",
+    "lint": "eslint . --ext .js --ext .ts",
+    "lint:fix": "yarn lint -- --fix",
+    "test:unit": "NODE_ENV=test jest --maxWorkers=2 --coverage",
+    "test:integration": "NODE_ENV=test jest --maxWorkers=2 --rootDir=. -c ./integration-tests/jest.config.js",
+    "test": "yarn lint && yarn test:unit",
+    "release": "sh scripts/release.sh"
+  },
+  "alliageManifest": {
+    "type": "module",
+    "dependencies": [
+      "alliage-lifecycle",
+      "alliage-di",
+      "alliage-config-loader",
+      "alliage-module-installer",
+      "alliage-builder"
+    ],
+    "installationProcedures": {
+      "copyFiles": [
+        [
+          "base-files/tsconfig.json",
+          "tsconfig.json"
+        ]
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.2",
+    "@types/node": "^14.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@typescript-eslint/typescript-estree": "^2.33.0",
+    "alliage": "^0.0.1",
+    "alliage-core": "^0.0.1",
+    "alliage-sandbox": "^0.0.1",
+    "cicd-cli-tools": "^0.3.0",
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.3",
+    "glob": "^7.1.6",
+    "jest": "^26.0.1",
+    "jest-extended": "^0.11.5",
+    "prettier": "^2.0.5",
+    "ts-jest": "^25.5.1",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3"
+  },
+  "peerDependencies": {
+    "alliage": "^0.0.1",
+    "alliage-builder": "^0.0.1",
+    "alliage-config-loader": "^0.0.1",
+    "alliage-di": "^0.0.1",
+    "alliage-lifecycle": "^0.0.1",
+    "alliage-module-installer": "^0.0.1",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3"
+  }
+}
