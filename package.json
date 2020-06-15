@@ -1,6 +1,6 @@
 {
   "name": "alliage-typescript",
-  "version": "0.0.1-pre.1",
+  "version": "0.0.1",
   "description": "TypeScript module for alliage",
   "main": "index.js",
   "repository": "git@github.com:TheHumbleJester/alliage-typescript.git",
