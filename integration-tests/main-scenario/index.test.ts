@@ -8,7 +8,7 @@ describe('Main scenario', () => {
 
   beforeAll(async () => {
     await sandbox.init();
-    await sandbox.install(['alliage-core']).waitCompletion();
+    await sandbox.install(['alliage-core', '--env=development']).waitCompletion();
   });
 
   afterAll(async () => {
@@ -16,7 +16,7 @@ describe('Main scenario', () => {
   });
 
   it('should install correctly and create the tsconfig.json file', async () => {
-    const { waitCompletion } = await sandbox.install(['alliage-typescript']);
+    const { waitCompletion } = await sandbox.install(['alliage-typescript', '--env=development']);
 
     await waitCompletion();
 
@@ -36,7 +36,8 @@ describe('Main scenario', () => {
             'alliage-module-installer',
             'alliage-builder',
           ],
-          hash: 'a19a4abc235e6afa08c548931e18158d',
+          envs: ['development'],
+          hash: '25e64aa754c310d45c1e084d574c1bb0',
           module: 'alliage-typescript',
         },
       }),
@@ -50,6 +51,7 @@ describe('Main scenario', () => {
       '--use-typescript',
       '--ts-services-basepath=src',
       '--ts-project=./tsconfig.json',
+      '--env=development',
     ]);
 
     let output = '';
@@ -58,12 +60,14 @@ describe('Main scenario', () => {
     });
     await waitCompletion();
     expect(output).toEqual(
-      'Hello Alliage TypeScript ! - test - production\nabout to shut down...\nshutting down with signal: @process-manager/SIGNAL/SUCCESS_SHUTDOWN\n',
+      'Hello Alliage TypeScript ! - test - development\nabout to shut down...\nshutting down with signal: @process-manager/SIGNAL/SUCCESS_SHUTDOWN\n',
     );
   });
 
   it('should compile the TypeScript code and run the compiled version', async () => {
-    const { waitCompletion: waitBuildCompletion, process: buildProcess } = sandbox.build([]);
+    const { waitCompletion: waitBuildCompletion, process: buildProcess } = sandbox.build([
+      '--env=development',
+    ]);
     buildProcess.stderr!.pipe(process.stderr);
     buildProcess.stdout!.pipe(process.stdout);
 
