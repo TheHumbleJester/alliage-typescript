@@ -37,7 +37,7 @@ describe('Main scenario', () => {
             'alliage-builder',
           ],
           envs: ['development'],
-          hash: '25e64aa754c310d45c1e084d574c1bb0',
+          hash: '47cd76e43f74bbc2e1baaf194d07e1fa',
           module: 'alliage-typescript',
         },
       }),
